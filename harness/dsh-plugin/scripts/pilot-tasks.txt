@@ -1,0 +1,24 @@
+# 20-task pilot subset of Terminal-Bench 2.1 (agent timeout <= 1800s, no GPU).
+# easy
+fix-git
+cobol-modernization
+prove-plus-comm
+# medium
+build-cython-ext
+build-pmars
+db-wal-recovery
+extract-elf
+git-multibranch
+headless-terminal
+kv-store-grpc
+nginx-request-logging
+polyglot-c-py
+pypi-server
+sqlite-db-truncate
+custom-memory-heap-crash
+# hard
+cancel-async-tasks
+configure-git-webserver
+fix-code-vulnerability
+password-recovery
+write-compressor

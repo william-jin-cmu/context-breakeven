@@ -1,0 +1,19 @@
+# tbmin: DeepSeek Harness "minimal mode" (sdk-minimal tool set) driven by the one-shot headless runner.
+- id: sdk-app-startup
+  disabled: true
+- id: sdk-jsonrpc-server
+  disabled: true
+- insert:
+    - id: agent-default-model
+      name: '@deepseek-ai/dsh-agent-default-model'
+      config:
+        provider: deepseek-official
+        model: deepseek-v4-flash
+        reasoningEffort: !!js process.env.DSH_REASONING_EFFORT ?? 'max'
+    - id: headless-startup
+      name: '@deepseek-ai/dsh-headless/startup'
+    - id: headless-runner
+      name: '@deepseek-ai/dsh-headless'
+      inject: [headlessStartup]
+      config:
+        task: !!js ctx.headlessStartup.task

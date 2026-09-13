@@ -1,0 +1,9 @@
+node_modules/
+jobs/
+logs/
+*.log
+__pycache__/
+.DS_Store
+paper/arxiv/
+paper/*.tar.gz
+.env

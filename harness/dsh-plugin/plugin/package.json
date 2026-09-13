@@ -1,0 +1,48 @@
+{
+  "name": "@dsh-external/dsh-skill-state",
+  "version": "0.1.0",
+  "description": "SKILL.state for dsh: replace conversation history with a structured execution state each step, keep the raw trace searchable (progressive disclosure), serialize cache-aligned.",
+  "private": true,
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib"
+  ],
+  "license": "BSD-3-Clause",
+  "engines": {
+    "dsh": ">=0.1.2"
+  },
+  "scripts": {
+    "build": "node node_modules/typescript/bin/tsc -p tsconfig.json"
+  },
+  "dshx": {
+    "contributes": {
+      "tools": [
+        "update_state",
+        "search_history"
+      ],
+      "skills": []
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "*",
+    "@deepseek-ai/dsh-compaction": "*",
+    "@deepseek-ai/dsh-llm": "*",
+    "@deepseek-ai/dsh-session": "*",
+    "@deepseek-ai/dsh-system-prompt": "*",
+    "@deepseek-ai/dsh-token-meter": "*",
+    "@deepseek-ai/dsh-tools": "*",
+    "@deepseek-ai/schemastery": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

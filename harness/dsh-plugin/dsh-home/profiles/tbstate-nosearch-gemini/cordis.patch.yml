@@ -1,0 +1,41 @@
+# tbstate-nosearch: SKILL.state only, no search_history (arm 2).
+- id: sdk-app-startup
+  disabled: true
+- id: sdk-jsonrpc-server
+  disabled: true
+- insert:
+    # Gemini route: sdk-minimal ships only llm-deepseek, so mount pi-ai's
+    # multi-provider adapter here and reuse its native google provider with our
+    # own model list (gemini-3.5-flash is newer than pi-ai's static catalog).
+    - id: llm-pi-ai
+      name: '@deepseek-ai/dsh-llm-pi-ai'
+      config:
+        providers:
+          google:
+            apiKeyEnv: GEMINI_API_KEY
+            displayName: Google Gemini
+            models:
+              - id: gemini-3.5-flash
+                name: Gemini 3.5 Flash
+                contextWindow: 1048576
+                maxTokens: 65536
+                input: [text]
+    - id: agent-default-model
+      name: '@deepseek-ai/dsh-agent-default-model'
+      config:
+        provider: google
+        model: gemini-3.5-flash
+    - id: token-meter
+      name: '@deepseek-ai/dsh-token-meter'
+    - id: skill-state
+      name: '/Users/jinqiu/cetus/dsh-skill-state/plugin/lib/index.js'
+      config:
+        maxLogLines: 300
+        search: false
+    - id: headless-startup
+      name: '@deepseek-ai/dsh-headless/startup'
+    - id: headless-runner
+      name: '@deepseek-ai/dsh-headless'
+      inject: [headlessStartup]
+      config:
+        task: !!js ctx.headlessStartup.task
